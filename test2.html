@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>open app</title>
+	<link rel="stylesheet" href="">
+</head>
+<script>		
+	   function openApp() {
+	   	console.log("openApp invoke");
+           if (/android/i.test(navigator.userAgent)) {
+            console.log("is andorid");
+                var isrefresh = getUrlParam('refresh'); // 获得refresh参数
+                if(isrefresh == 1) {
+                    return;
+                }
+                window.location.href = 'myapp://xxx/openwith?data=mydata';
+                window.setTimeout(function () {
+                        window.location.href += '&refresh=1' // 附加一个特殊参数，用来标识这次刷新不要再调用myapp:// 了
+                }, 500);
+            }
+   }
+</script>
+<body>
+	amd test111
+	<div onclick="openApp();">打开我的app</div>
+</body>
+</html>
